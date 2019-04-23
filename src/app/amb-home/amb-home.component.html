@@ -1,99 +1,47 @@
-<div class="home-content">
-
+<div class="home-content" *ngFor="let section of paperData.sections; let i = index">
   <mat-card class="home-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Angular Material @ngrx</mat-card-title>
-      <mat-card-subtitle>Check this Home</mat-card-subtitle>
+      <div mat-card-avatar class="example-header-image" style="height:50px; width:500px"></div>
+      <mat-card-title>SECTION {{section.section}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="../assets/images/angular-material-post.png" alt="Angular Material 7">
     <mat-card-content>
-      <p>
-        Angular Material with @ngrx and lazy loading, click OPEN button then 
-        you can see sidenav content (with the current store value)
-      </p>
+      <mat-tab-group>
+        <div *ngFor="let question of section.questions;">
+          <mat-tab label="{{question.number}}">
+              <mat-card>
+                  <mat-vertical-stepper [linear]="isLinear" #stepper>
+                      <mat-step>
+                        <ng-template matStepLabel>
+                          <div>
+                              <h4><label>Question: </label>{{question.question.text}}</h4>
+                          </div>
+                        </ng-template>
+                        <div>
+                            <div *ngIf="question.question.imagePresent"><img style="height:100px;width:500px" src="{{question.question.imageurl}}"></div><br>
+                            <span><label>Marks : </label> 1 </span>
+                        </div>
+                      </mat-step>
+                      <mat-step>
+                        <ng-template matStepLabel>
+                          <div>
+                              <h4><label>Answer:</label></h4>
+                          </div>
+                        </ng-template>
+                        <div>
+                            <p>
+                                {{question.answer.text}}
+                            </p>
+                            <div *ngIf="question.answer.imagePresent"><img style="height:100px;width:500px" src="{{question.answer.imageurl}}"></div><br>
+                        </div>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                        </div>
+                      </mat-step>
+                    </mat-vertical-stepper>
+              </mat-card>
+          </mat-tab>
+        </div>
+      </mat-tab-group>
     </mat-card-content>
-    <mat-card-actions>
-      <button color="accent" (click)="open()" mat-raised-button>OPEN</button>
-      <button color="accent" mat-raised-button>LIKE</button>
-    </mat-card-actions>
   </mat-card>
-
-  <mat-card class="home-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Angular Material @ngrx</mat-card-title>
-      <mat-card-subtitle>Check this Home</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="../assets/images/angular-material-post.png" alt="Angular Material 7">
-    <mat-card-content>
-      <p>
-        Angular Material with @ngrx and lazy loading, click OPEN button then 
-        you can see sidenav content (with the current store value)
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button color="accent" (click)="open()" mat-raised-button>OPEN</button>
-      <button color="accent" mat-raised-button>LIKE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="home-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Angular Material @ngrx</mat-card-title>
-      <mat-card-subtitle>Check this Home</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="../assets/images/angular-material-post.png" alt="Angular Material 7">
-    <mat-card-content>
-      <p>
-        Angular Material with @ngrx and lazy loading, click OPEN button then 
-        you can see sidenav content (with the current store value)
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button color="accent" (click)="open()" mat-raised-button>OPEN</button>
-      <button color="accent" mat-raised-button>LIKE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card class="home-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Angular Material @ngrx</mat-card-title>
-      <mat-card-subtitle>Check this Home</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="../assets/images/angular-material-post.png" alt="Angular Material 7">
-    <mat-card-content>
-      <p>
-        Angular Material with @ngrx and lazy loading, click OPEN button then 
-        you can see sidenav content (with the current store value)
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button color="accent" (click)="open()" mat-raised-button>OPEN</button>
-      <button color="accent" mat-raised-button>LIKE</button>
-    </mat-card-actions>
-  </mat-card>
-
-
-  <mat-card class="home-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Angular Material @ngrx</mat-card-title>
-      <mat-card-subtitle>Check this Home</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="../assets/images/angular-material-post.png" alt="Angular Material 7">
-    <mat-card-content>
-      <p>
-        Angular Material with @ngrx and lazy loading, click OPEN button then 
-        you can see sidenav content (with the current store value)
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button color="accent" (click)="open()" mat-raised-button>OPEN</button>
-      <button color="accent" mat-raised-button>LIKE</button>
-    </mat-card-actions>
-  </mat-card>
-
 </div>

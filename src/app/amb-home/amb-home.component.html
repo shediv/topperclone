@@ -6,39 +6,110 @@
     </mat-card-header>
     <mat-card-content>
       <mat-tab-group>
-        <div *ngFor="let question of section.questions;">
-          <mat-tab label="{{question.number}}">
+        <div *ngFor="let sectionQuestions of section.questions;">
+          <mat-tab label="{{sectionQuestions.number}}">
+            <!-- Start of Execute when no Or Option -->
+            <ng-template [ngIf]="!sectionQuestions.hasOrOption" [ngIfElse]="questionWithOrOption">
               <mat-card>
-                  <mat-vertical-stepper [linear]="isLinear" #stepper>
-                      <mat-step>
-                        <ng-template matStepLabel>
-                          <div>
-                              <h4><label>Question: </label>{{question.question.text}}</h4>
-                          </div>
-                        </ng-template>
-                        <div>
-                            <div *ngIf="question.question.imagePresent"><img style="height:100px;width:500px" src="{{question.question.imageurl}}"></div><br>
-                            <span><label>Marks : </label> 1 </span>
-                        </div>
-                      </mat-step>
-                      <mat-step>
-                        <ng-template matStepLabel>
-                          <div>
-                              <h4><label>Answer:</label></h4>
-                          </div>
-                        </ng-template>
-                        <div>
-                            <p>
-                                {{question.answer.text}}
-                            </p>
-                            <div *ngIf="question.answer.imagePresent"><img style="height:100px;width:500px" src="{{question.answer.imageurl}}"></div><br>
-                        </div>
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                        </div>
-                      </mat-step>
-                    </mat-vertical-stepper>
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+                  <mat-step>
+                    <ng-template matStepLabel>
+                      <div>
+                          <h4><label>Question: </label>{{sectionQuestions.question.text}}</h4>
+                      </div>
+                    </ng-template>
+                    <div>
+                        <div *ngIf="sectionQuestions.question.imagePresent"><img style="height:100px;width:500px" src="{{sectionQuestions.question.imageurl}}"></div><br>
+                        <span><label>Marks : </label> 1 </span>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>
+                      <div>
+                          <h4><label>Answer:</label></h4>
+                      </div>
+                    </ng-template>
+                    <div>
+                        <p>
+                            {{sectionQuestions.answer.text}}
+                        </p>
+                        <div *ngIf="sectionQuestions.answer.imagePresent"><img style="height:200px;width:500px" src="{{sectionQuestions.answer.imageurl}}"></div><br>
+                    </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                    </div>
+                  </mat-step>
+                </mat-vertical-stepper>
               </mat-card>
+            </ng-template>
+            <!-- End of Execute when no Or Option -->
+            <!-- Execute when queston has Or Option -->
+            <ng-template #questionWithOrOption>
+              <mat-card>
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+                  <mat-step>
+                    <ng-template matStepLabel>
+                      <div>
+                          <h4><label>Question: </label>{{sectionQuestions.firstOrQuestion.question.text}}</h4>
+                      </div>
+                    </ng-template>
+                    <div>
+                        <div *ngIf="sectionQuestions.firstOrQuestion.question.imagePresent"><img style="height:200px;width:500px" src="{{sectionQuestions.firstOrQuestion.question.imageurl}}"></div><br>
+                        <span><label>Marks : </label> 1 </span>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>
+                      <div>
+                          <h4><label>Answer:</label></h4>
+                      </div>
+                    </ng-template>
+                    <div>
+                        <p>
+                            {{sectionQuestions.firstOrQuestion.answer.text}}
+                        </p>
+                        <div *ngIf="sectionQuestions.firstOrQuestion.answer.imagePresent"><img style="height:100px;width:500px" src="{{sectionQuestions.firstOrQuestion.answer.imageurl}}"></div><br>
+                    </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                    </div>
+                  </mat-step>
+                </mat-vertical-stepper>
+                
+                <span>OR</span>
+
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+                  <mat-step>
+                    <ng-template matStepLabel>
+                      <div>
+                          <h4><label>Question: </label>{{sectionQuestions.secondOrQuestion.question.text}}</h4>
+                      </div>
+                    </ng-template>
+                    <div>
+                        <div *ngIf="sectionQuestions.secondOrQuestion.question.imagePresent"><img style="height:100px;width:500px" src="{{sectionQuestions.secondOrQuestion.question.imageurl}}"></div><br>
+                        <span><label>Marks : </label> 1 </span>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>
+                      <div>
+                          <h4><label>Answer:</label></h4>
+                      </div>
+                    </ng-template>
+                    <div>
+                        <p>
+                            {{sectionQuestions.secondOrQuestion.answer.text}}
+                        </p>
+                        <div *ngIf="sectionQuestions.secondOrQuestion.answer.imagePresent"><img style="height:100px;width:500px" src="{{sectionQuestions.secondOrQuestion.answer.imageurl}}"></div><br>
+                    </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                    </div>
+                  </mat-step>
+                </mat-vertical-stepper>
+              </mat-card>
+            </ng-template>
+            <!-- End of Execute when no Or Option -->
           </mat-tab>
         </div>
       </mat-tab-group>
